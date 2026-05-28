@@ -37,14 +37,16 @@ pipeline {
         }
 
         stage('4. Deployment') {
-            echo "Deploying"
+            steps {
+                echo "Deploying"
 
-            // Stop and remove old container versions
-            sh "docker stop ${DOCKER_IMAGE} || true"
-            sh "docker rm ${DOCKER_IMAGE} || true"
-                
-            // Launch the new container instantly using the local image copy
-            sh "docker run -d -p 3000:3000 --name ${DOCKER_IMAGE} ${DOCKER_USER}/${DOCKER_IMAGE}:${IMAGE_TAG}"
+                // Stop and remove old container versions
+                sh "docker stop ${DOCKER_IMAGE} || true"
+                sh "docker rm ${DOCKER_IMAGE} || true"
+
+                // Launch the new container instantly using the local image copy
+                sh "docker run -d -p 3000:3000 --name ${DOCKER_IMAGE} ${DOCKER_USER}/${DOCKER_IMAGE}:${IMAGE_TAG}"
+            }
         }
 
         stage('5. Health Check') {
