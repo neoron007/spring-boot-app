@@ -59,12 +59,11 @@ pipeline {
             }
         }
 
-        post {
-            stage {
-                always {
-                    echo "Successfully deployed."
-                }
-            }
+    }
+
+    post {
+        always {
+            echo "Successfully deployed."
         }
     }
 }
