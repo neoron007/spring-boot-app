@@ -60,8 +60,10 @@ pipeline {
         }
 
         post {
-            always {
-                echo "Successfully deployed."
+            stage {
+                always {
+                    echo "Successfully deployed."
+                }
             }
         }
     }
